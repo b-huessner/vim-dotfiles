@@ -1,0 +1,7 @@
+# Files
+*.swp
+autoload/plug.vim
+
+
+# Folders
+plugged/
