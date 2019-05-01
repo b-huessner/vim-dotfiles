@@ -126,7 +126,9 @@ smap <C-k> <Plug>(neosnippet_expand_or_jump)
 xmap <C-k> <Plug>(neosnippet_expand_target)
 
 " Load custom snippets from snippets folder
-let g:neosnippet#snippets_directory='~/.vim/snippets'
+let g:neosnippet#snippets_directory='~/.vim/snippets/'
+
+autocmd FileType jsx UltiSnipsAddFiletypes html
 
 " Hide conceal markers
 let g:neosnippet#enable_conceal_markers = 0
