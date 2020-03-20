@@ -1,22 +1,20 @@
-"*****************************************************************************
-" Basic Setup
-"*****************************************************************************"
-" Encoding
-set encoding=utf-8
-set fileencoding=utf-8
-set fileencodings=utf-8
-set ttyfast
+let mapleader = ","
 
-" Enable hidden buffers
-set hidden
+set rtp+=~/.fzf
 
-" Fix backspace indent
-set backspace=indent,eol,start
+" Theme
+ syntax enable
+" for vim 7
+ set t_Co=256
 
-" Easymotion configuration
-" s{char}{char} to move to {char}{char}
-nmap s <Plug>(easymotion-overwin-f2)
+" for vim 8
+ if (has("termguicolors"))
+  set termguicolors
+ endif
 
+colorscheme OceanicNext
+
+" General settings
 set shell=/bin/bash
 
 set tabstop=2
@@ -29,7 +27,6 @@ set relativenumber
 
 " Search stuff
 set incsearch
-"set hls
 
 " Search mappings: These will make it so that going to the next one in a
 " search will center on the line it's found in.
@@ -60,9 +57,6 @@ cnoreabbrev W w
 cnoreabbrev Q q
 cnoreabbrev Qall qall
 
-" Close all buffers
-inoremap <leader>c :BufOnly
-
 " NERDTree configuration
 let g:NERDTreeChDirMode=2
 let g:NERDTreeIgnore=['\.rbc$', '\~$', '\.pyc$', '\.db$', '\.sqlite$', '__pycache__']
@@ -74,9 +68,6 @@ let g:NERDTreeWinSize = 40
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
 nnoremap <silent> <F2> :NERDTreeFind<CR>
 nnoremap <silent> <F3> :NERDTreeToggle<CR>
-
-" terminal emulation
-nnoremap <silent> <leader>sh :terminal<CR>
 
 " Split
 noremap <Leader>h :<C-u>split<CR>
@@ -97,9 +88,6 @@ nnoremap <Tab> gt
 nnoremap <S-Tab> gT
 nnoremap <silent> <S-t> :tabnew<CR>
 
-" Set working directory
-nnoremap <leader>. :lcd %:p:h<CR>
-
 " Copy/Paste/Cut
 if has('unnamedplus')
   set clipboard=unnamed,unnamedplus
@@ -119,17 +107,64 @@ noremap <leader>c :bd<CR>
 " Clean search (highlight)
 nnoremap <silent> <leader><space> :noh<cr>
 
-" === NeoSnippet === "
-" Map <C-k> as shortcut to activate snippet if available
-imap <C-k> <Plug>(neosnippet_expand_or_jump)
-smap <C-k> <Plug>(neosnippet_expand_or_jump)
-xmap <C-k> <Plug>(neosnippet_expand_target)
+" Formatters
+au FileType javascript setlocal formatprg=prettier
+au FileType javascript.jsx setlocal formatprg=prettier
+au FileType typescript setlocal formatprg=prettier\ --parser\ typescript
+au FileType html setlocal formatprg=js-beautify\ --type\ html
+au FileType scss setlocal formatprg=prettier\ --parser\ css
+au FileType css setlocal formatprg=prettier\ --parser\ css
 
-" Load custom snippets from snippets folder
-let g:neosnippet#snippets_directory='~/.vim/snippets/'
+" deoplete + neosnippet + autopairs changes
+let g:AutoPairsMapCR=0
+let g:deoplete#auto_complete_start_length = 1
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_smart_case = 1
+imap <expr><TAB> pumvisible() ? "\<C-n>" : (neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>")
+imap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
+imap <expr><CR> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<CR>"
 
-autocmd FileType jsx UltiSnipsAddFiletypes html
+" Snippets
+let g:neosnippet#disable_runtime_snippets = {
+\   '_' : 1,
+\ }
+let g:neosnippet#enable_completed_snippet = 1
+let g:neosnippet#snippets_directory='~/.vim/snippets'
 
-" Hide conceal markers
-let g:neosnippet#enable_conceal_markers = 0
+" Linting
+let g:ale_linters = {
+\   'javascript': ['eslint'],
+\   'vue': ['eslint']
+\}
 
+let g:ale_fixers = {
+  \    'javascript': ['prettier', 'eslint'],
+  \    'typescript': ['prettier', 'tslint'],
+  \    'vue': ['eslint'],
+  \    'scss': ['prettier'],
+  \    'html': ['prettier'],
+  \    'reason': ['refmt']
+\}
+let g:ale_fix_on_save = 1
+
+nnoremap ]r :ALENextWrap<CR>     " move to the next ALE warning / error
+nnoremap [r :ALEPreviousWrap<CR> " move to the previous ALE warning / error
+
+" Language Server
+let g:LanguageClient_serverCommands = {
+    \ 'javascript': ['javascript-typescript-langserver'],
+    \ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio']
+    \ }
+
+nnoremap <leader>l :call LanguageClient_contextMenu()<CR>
+nnoremap K :call LanguageClient#textDocument_hover()<CR>
+nnoremap gd :call LanguageClient#textDocument_definition()<CR>
+nnoremap <leader>r :call LanguageClient#textDocument_rename()<CR>
+
+" FZF
+nnoremap <leader>e :Files<CR>
+nnoremap <leader>gf :GFiles?<CR>
+
+" Ag
+command! -bang -nargs=* Agu call fzf#vim#ag(<q-args>, '--skip-vcs-ignores --ignore node_modules --ignore *.swp', {'down': '~40%'})
+nnoremap <leader>f :Agu 
