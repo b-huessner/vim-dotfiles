@@ -169,17 +169,14 @@ nnoremap <leader>r :call LanguageClient#textDocument_rename()<CR>
 nnoremap <leader>e :Files<CR>
 nnoremap <leader>gf :GFiles?<CR>
 
-" Ag
-" Without preview
-"command! -bang -nargs=* Agu call fzf#vim#ag(<q-args>, '--skip-vcs-ignores --ignore node_modules --ignore *.swp', {'down': '~40%'})
-" With preview
-command! -bang -nargs=* Agu
-\ call fzf#vim#ag(<q-args>,
-\                 <bang>0 ? fzf#vim#with_preview('up:60%')
-\                         : fzf#vim#with_preview('right:50%', '?'),
-\                 <bang>0)
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --hidden --ignore-case --no-heading --color=always '.shellescape(<q-args>), 1,
+  \   <bang>0 ? fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'up:60%')
+  \           : fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'right:50%', '?'),
+  \   <bang>0)
 
-nnoremap <leader>f :Agu 
+nnoremap <leader>f :Ag 
 
 
 
