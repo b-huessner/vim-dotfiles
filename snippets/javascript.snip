@@ -35,9 +35,43 @@ snippet ir
 snippet irc
   import React, { Component } from 'react';
 
-#Import React and PropTypes
+# Import React and PropTypes
 snippet irp
   import React from 'react';
   import PropTypes from 'prop-types';
 
+# Require
+snippet req
+  const ${1} = require('${2}');
+
+# Import Member
+snippet imm
+  import { ${1} } from '${2}';
+
+# Import Default
+snippet im
+  import ${1} from '${2}';
+
+# Import as
+snippet imas
+  import ${1} as ${2} from '${3}';
+
+###### TESTING ######
+# Describe
+snippet desc
+  describe('${1}', () => {
+    ${0}
+  });
+
+# It should
+snippet it
+  it('Should ${1}', () => {
+    ${0}
+  });
+
+# It should async
+snippet itasync
+  it('Should ${1}', async () => {
+    ${0}
+  });
 
