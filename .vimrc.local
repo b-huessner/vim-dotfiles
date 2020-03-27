@@ -21,6 +21,9 @@ set tabstop=2
 set shiftwidth=2
 set expandtab
 
+set backupcopy=yes
+set directory=~/.vim/.swp/
+
 set nonumber
 set ruler
 set relativenumber
@@ -61,7 +64,7 @@ cnoreabbrev Qall qall
 
 " NERDTree configuration
 let g:NERDTreeChDirMode=2
-let g:NERDTreeIgnore=['\.rbc$', '\~$', '\.pyc$', '\.db$', '\.sqlite$', '__pycache__']
+let g:NERDTreeIgnore=['\.rbc$', '\~$', '\.pyc$', '\.db$', '\.sqlite$', '__pycache__', '^node_modules$']
 let g:NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$', '\.bak$', '\~$']
 let g:NERDTreeShowBookmarks=1
 let g:nerdtree_tabs_focus_on_files=1
@@ -84,6 +87,7 @@ noremap <Leader>gs :Gstatus<CR>
 noremap <Leader>gb :Gblame<CR>
 noremap <Leader>gd :Gvdiff<CR>
 noremap <Leader>gr :Gremove<CR>
+noremap <Leader>glo :GcLog<CR>
 
 " Tabs
 nnoremap <Tab> gt
@@ -109,10 +113,21 @@ noremap <leader>c :bd<CR>
 " Clean search (highlight)
 nnoremap <silent> <leader><space> :noh<cr>
 
+" Highlight colors in files
+let g:colorizer_auto_filetype='css,html,javascript'
+
+" Autoclose Tags in files
+let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.erb,*.jsx,*.js"
+let g:closetag_xhtml_filenames = '*.xhtml,*.jsx,*.erb'
+let g:closetag_emptyTags_caseSensitive = 1
+let g:closetag_shortcut = '>'
+let g:closetag_close_shortcut = '<leader>>'
+
 " Formatters
 au FileType javascript setlocal formatprg=prettier
 au FileType javascript.jsx setlocal formatprg=prettier
 au FileType typescript setlocal formatprg=prettier\ --parser\ typescript
+au FileType json setlocal formatprg=prettier
 au FileType html setlocal formatprg=js-beautify\ --type\ html
 au FileType scss setlocal formatprg=prettier\ --parser\ css
 au FileType css setlocal formatprg=prettier\ --parser\ css
@@ -144,12 +159,15 @@ let g:ale_linters = {
 let g:ale_fixers = {
   \    'javascript': ['prettier', 'eslint'],
   \    'typescript': ['prettier', 'tslint'],
+  \    'typescriptreact': ['prettier', 'eslint'],
+  \    'json': ['prettier'],
   \    'vue': ['eslint'],
   \    'scss': ['prettier'],
   \    'html': ['prettier'],
   \    'reason': ['refmt']
 \}
 let g:ale_fix_on_save = 1
+let g:ale_linter_aliases = {'jsx': 'javascript'}
 
 nnoremap ]r :ALENextWrap<CR>     " move to the next ALE warning / error
 nnoremap [r :ALEPreviousWrap<CR> " move to the previous ALE warning / error
@@ -177,7 +195,9 @@ command! -bang -nargs=* Rg
   \   <bang>0)
 
 nnoremap <leader>f :Ag 
+nnoremap <leader><leader>f :Ag! 
 
 
+nmap <leader>sw ysiw
 
 
