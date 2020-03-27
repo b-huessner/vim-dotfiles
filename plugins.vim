@@ -42,6 +42,18 @@ Plug 'stephpy/vim-yaml'
 " Dockerfile
 Plug 'ekalinin/dockerfile.vim'
 
+" Show Hex colors with background
+Plug 'chrisbra/Colorizer'
+
+" Auto close tags
+Plug 'alvan/vim-closetag'
+
+" Surround
+Plug 'tpope/vim-surround'
+
+" Expand HTML
+Plug 'mattn/emmet-vim'
+
 " FuzzySearch
 set rtp+=~/.fzf
 Plug 'junegunn/fzf.vim'
