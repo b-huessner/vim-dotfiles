@@ -10,6 +10,18 @@ snippet filter
     ${3}
   });
 
+# Try catch
+snippet try
+  try {
+    ${1}
+  } catch(e) {
+    
+  }
+
+# Export default
+snippet expd
+  export default ${1};
+
 ###### REACT ######
 # Full Function Component
 snippet rfc
@@ -17,9 +29,15 @@ snippet rfc
 
   const ${1:MyComponent} = ({${2:props}}) => {
     return (
-      <div>$3</div>
+      <div>${3:Content}</div>
     );
   };
+
+  export default $1;
+
+# Intermediate index.js
+snippet rind
+  import ${1} from './$1';
 
   export default $1;
 
@@ -40,6 +58,30 @@ snippet irp
   import React from 'react';
   import PropTypes from 'prop-types';
 
+# Ducks stub
+snippet ducks
+  // Actions
+  const ACTION = 'duck/ACTION';
+
+  const defaultState = null;
+
+  // Reducer
+  const reducer = (state = defaultState, action = {}) => {
+    switch (action.type) {
+    
+    }
+  };
+
+  export default reducer;
+
+  // Action creators
+  export const actionCreator = () => {
+    return {
+      type: ACTION
+    };
+  };
+
+
 # Require
 snippet req
   const ${1} = require('${2}');
@@ -49,12 +91,101 @@ snippet imm
   import { ${1} } from '${2}';
 
 # Import Default
-snippet im
+snippet imd
   import ${1} from '${2}';
+
+# Import Default Component
+snippet imc
+  import ${1} from './$1';
 
 # Import as
 snippet imas
   import ${1} as ${2} from '${3}';
+
+###### Styled Components ######
+# Import styled-components
+snippet isc
+  import styled from 'styled-components';
+
+# Import styled-theming
+snippet ist
+  import theme from 'styled-theming';
+
+# Import styled-component and styled-theming
+snippet isct
+  import styled from 'styled-components';
+  import theme from 'styled-theming';
+
+# Styled Component
+snippet styled
+  const ${1:Component} = styled.${2:kind}`
+  ${3:styles}
+  `;
+
+# Styled div
+snippet sdiv
+  const ${1:Component} = styled.div${2};
+
+# Styled theme
+snippet theme
+  const ${1:Name} = theme('${2}', {
+    ${3:styles}
+  });
+
+# Styled variants
+snippet variants
+  const ${1: Name} = theme.variants(${2}, ${3}, {
+    ${4:styles}
+  });
+
+###### EXPRESS ######
+# Get
+snippet expget
+  app.get('${1:route}', (req, res, next) => {
+    ${2}
+  });
+
+# Get Async
+snippet expgetas
+  app.get('${1:route}', async (req, res, next) => {
+    ${2}
+  });
+
+# Post
+snippet exppost
+  app.post('${1:route}', (req, res, next) => {
+    ${2}
+  });
+
+# Post Async
+snippet exppostas
+  app.post('${1:route}', async (req, res, next) => {
+    ${2}
+  });
+
+# Delete
+snippet expdel
+  app.delete('${1:route}', (req, res, next) => {
+    ${2}
+  });
+
+# Delete Async
+snippet expdelas
+  app.delete('${1:route}', async (req, res, next) => {
+    ${2}
+  });
+
+# Put
+snippet expput
+  app.put('${1:route}', (req, res, next) => {
+    ${2}
+  });
+
+# Put Async
+snippet expputas
+  app.put('${1:route}', async (req, res, next) => {
+    ${2}
+  });
 
 ###### TESTING ######
 # Describe
