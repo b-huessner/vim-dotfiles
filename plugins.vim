@@ -41,6 +41,8 @@ Plug 'chr4/nginx.vim'
 Plug 'stephpy/vim-yaml'
 " Dockerfile
 Plug 'ekalinin/dockerfile.vim'
+" Jenkinsfile
+Plug 'martinda/Jenkinsfile-vim-syntax'
 
 " Show Hex colors with background
 Plug 'chrisbra/Colorizer'
