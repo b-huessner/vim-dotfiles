@@ -83,7 +83,7 @@ noremap <Leader>ga :Gwrite<CR>
 noremap <Leader>gc :Gcommit<CR>
 noremap <Leader>gsh :Gpush<CR>
 noremap <Leader>gll :Gpull<CR>
-noremap <Leader>gs :Gstatus<CR>
+noremap <Leader>gst :Gstatus<CR>
 noremap <Leader>gb :Gblame<CR>
 noremap <Leader>gd :Gvdiff<CR>
 noremap <Leader>gr :Gremove<CR>
@@ -197,7 +197,19 @@ command! -bang -nargs=* Rg
 nnoremap <leader>f :Ag 
 nnoremap <leader><leader>f :Ag! 
 
-
+" Surround current word with...
 nmap <leader>sw ysiw
 
+" Substitute word under cursor
+nmap <leader>sw :%s/\<<C-r><C-w>\>/
+" Find word unser cursor
+nmap <leader>fw :/<C-r><C-w><CR>
+
+" but a console log below current line and go to insert mode between the
+" parens.
+nmap <leader>cl oconsole.log();<ESC>hha
+
+" Define and map command to close all buffers but the current one
+command! BufOnly execute '%bdelete|edit #|normal `"'
+nmap <leader><leader>c :BufOnly<CR><leader>q<leader>c|normal `"
 
