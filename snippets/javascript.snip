@@ -18,6 +18,12 @@ snippet try
     
   }
 
+# If
+snippet if
+  if (${1}) {
+    ${2}
+  }
+
 # Export default
 snippet expd
   export default ${1};
@@ -57,6 +63,16 @@ snippet irc
 snippet irp
   import React from 'react';
   import PropTypes from 'prop-types';
+
+# Import PropTypes
+snippet ipt
+  import PropTypes from 'prop-types';
+
+# propTypes
+snippet propTypes
+  ${1}.propTypes = {
+    ${2}
+  }
 
 # Ducks stub
 snippet ducks
@@ -115,12 +131,6 @@ snippet ist
 snippet isct
   import styled from 'styled-components';
   import theme from 'styled-theming';
-
-# Styled Component
-snippet styled
-  const ${1:Component} = styled.${2:kind}`
-  ${3:styles}
-  `;
 
 # Styled div
 snippet sdiv
@@ -186,6 +196,20 @@ snippet expputas
   app.put('${1:route}', async (req, res, next) => {
     ${2}
   });
+
+# Mongoose
+# Import mongoose and Schema
+snippet immong
+  import mongoose, {Schema} from 'mongoose';
+
+# new Mongoose Model
+snippet mongmodel
+  const ${1:Model}Schema = new Schema({
+      ${3}
+    }),
+    $1 = mongoose.model('${2:collection}', $1Schema);
+
+  export default $1;
 
 ###### TESTING ######
 # Describe
