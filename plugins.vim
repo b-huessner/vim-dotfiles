@@ -50,6 +50,9 @@ Plug 'chrisbra/Colorizer'
 " Auto close tags
 Plug 'alvan/vim-closetag'
 
+" A Vim Plugin for Lively Previewing LaTeX PDF Output
+Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
+
 " Surround
 Plug 'tpope/vim-surround'
 
@@ -59,6 +62,9 @@ Plug 'mattn/emmet-vim'
 " FuzzySearch
 set rtp+=~/.fzf
 Plug 'junegunn/fzf.vim'
+
+" JsDoc
+Plug 'ryanoasis/vim-jsdoc'
 
 " ALE
 Plug 'dense-analysis/ale'

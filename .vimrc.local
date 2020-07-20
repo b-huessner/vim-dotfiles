@@ -47,6 +47,10 @@ set smartindent
 set ignorecase
 set smartcase
 
+" LATEX
+autocmd Filetype tex setl updatetime=1
+let g:livepreview_previewer = 'xdg-open'
+
 "*****************************************************************************
 " Abbreviations
 "*****************************************************************************
