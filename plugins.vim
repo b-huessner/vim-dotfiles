@@ -19,6 +19,8 @@ call plug#begin()
 
 " Nerdtree
 Plug 'preservim/nerdtree'
+" Close Buffer without closing split
+Plug 'qpkorr/vim-bufkill'
 " Auto Pairs
 Plug 'jiangmiao/auto-pairs'
 " Comments
