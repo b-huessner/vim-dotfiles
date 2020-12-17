@@ -1,0 +1,27 @@
+{
+  "suggest.noselect": false,
+  "coc.preferences.colorSupport": true,
+  "coc.preferences.bracketEnterImprove": true,
+  "coc.preferences.formatOnSaveFiletypes": [
+    "javascript",
+    "typescript",
+    "typescriptreact",
+    "json",
+    "javascriptreact",
+    "typescript.tsx",
+    "graphql"
+  ],
+  "eslint.packageManager": "yarn",
+  "eslint.options": { "configFile": "/home/bastian/.eslintrc.js" },
+
+  "prettier.printWidth": 80,
+  "prettier.tabWidth": 2,
+  "prettier.singleQuote": true,
+  "prettier.trailingComma": "none",
+  "prettier.bracketSpacing": true,
+  "prettier.jsxBracketSameLine": false,
+  "prettier.semi": true,
+  "prettier.useTabs": false,
+  "prettier.proseWrap": "preserve",
+  "prettier.arrowParens": "always"
+}

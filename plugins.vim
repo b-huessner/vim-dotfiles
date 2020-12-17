@@ -14,29 +14,46 @@ if !filereadable(plugpath)
     endif
 endif
 
+" Specify a directory for plugins
+call plug#begin('~/.vim/plugged')
 
-call plug#begin()
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-" Nerdtree
-Plug 'preservim/nerdtree'
-" Close Buffer without closing split
-Plug 'qpkorr/vim-bufkill'
-" Auto Pairs
-Plug 'jiangmiao/auto-pairs'
-" Comments
-Plug 'tpope/vim-commentary'
-" Color Scheme
-Plug 'mhartington/oceanic-next'
-" Easymotion
-Plug 'easymotion/vim-easymotion'
+Plug 'ctrlpvim/ctrlp.vim' " fuzzy find files
+Plug 'scrooloose/nerdcommenter'
+
+Plug 'christoomey/vim-tmux-navigator'
+
+Plug 'morhetz/gruvbox'
+
+" NERDTree
+Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'ryanoasis/vim-devicons'
+Plug 'unkiwii/vim-nerdtree-sync'
+
+" Vim surround
+Plug 'tpope/vim-surround'
+
 " Tab support
 Plug 'pacha/vem-tabline'
 
+" FuzzySearch
+set rtp+=~/.fzf
+Plug 'junegunn/fzf.vim'
+
+" Close Buffer without closing split
+Plug 'qpkorr/vim-bufkill'
+
+" Easymotion
+Plug 'easymotion/vim-easymotion'
+"
 " Syntax highlighting
 " JSX
 Plug 'MaxMEllon/vim-jsx-pretty'
-" Javascript
-Plug 'othree/yajs.vim'
+" Typescript
+Plug 'HerringtonDarkholme/yats.vim'
 " Nginx
 Plug 'chr4/nginx.vim'
 " YML
@@ -46,52 +63,16 @@ Plug 'ekalinin/dockerfile.vim'
 " Jenkinsfile
 Plug 'martinda/Jenkinsfile-vim-syntax'
 
-" Show Hex colors with background
-Plug 'chrisbra/Colorizer'
-
-" Auto close tags
-Plug 'alvan/vim-closetag'
-
-" A Vim Plugin for Lively Previewing LaTeX PDF Output
-Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
-
-" Surround
-Plug 'tpope/vim-surround'
-
-" Expand HTML
-Plug 'mattn/emmet-vim'
-
-" FuzzySearch
-set rtp+=~/.fzf
-Plug 'junegunn/fzf.vim'
-
 " JsDoc
-Plug 'ryanoasis/vim-jsdoc'
-
-" ALE
-Plug 'dense-analysis/ale'
-" Deoplete
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
-let g:deoplete#enable_at_startup = 1
-
-" Ultisnips
-Plug 'Shougo/neosnippet.vim'
+Plug 'heavenshell/vim-jsdoc', {
+  \ 'for': ['javascript'],
+  \ 'do': 'make install'
+\}
 
 " Git
 Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify'
 Plug 'airblade/vim-gitgutter'
 
-" Language Server support
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
-
+" Initialize plugin system
 call plug#end()
