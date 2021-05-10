@@ -63,6 +63,9 @@ Plug 'ekalinin/dockerfile.vim'
 " Jenkinsfile
 Plug 'martinda/Jenkinsfile-vim-syntax'
 
+" Dart
+Plug 'dart-lang/dart-vim-plugin'
+
 " JsDoc
 Plug 'heavenshell/vim-jsdoc', {
   \ 'for': ['javascript'],
