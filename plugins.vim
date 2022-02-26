@@ -41,6 +41,7 @@ Plug 'pacha/vem-tabline'
 
 " FuzzySearch
 set rtp+=~/.fzf
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
 " Close Buffer without closing split

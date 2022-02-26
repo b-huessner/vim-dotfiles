@@ -9,7 +9,8 @@
     "json",
     "javascriptreact",
     "typescript.tsx",
-    "graphql"
+    "graphql",
+    "dart"
   ],
   "eslint.packageManager": "yarn",
   "eslint.options": { "configFile": "/home/bastian/.eslintrc.js" },
@@ -23,5 +24,6 @@
   "prettier.semi": true,
   "prettier.useTabs": false,
   "prettier.proseWrap": "preserve",
-  "prettier.arrowParens": "always"
+  "prettier.arrowParens": "always",
+  "snippets.userSnippetsDirectory": "~/.vim/snips"
 }
